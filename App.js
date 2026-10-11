@@ -5,7 +5,8 @@ import { NativeRouter } from "react-router-native";
 const App = () => {
   return (
     <>
-      <StatusBar style="light" />{" "}
+      <StatusBar style="light" />
+
       <NativeRouter>
         <Main />
       </NativeRouter>

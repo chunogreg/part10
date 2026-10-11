@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     display: "flex",
   },
   child1: {
-    marginBottom: 15,
+    marginBottom: 8,
     padding: 22,
 
     backgroundColor: "white",
@@ -16,29 +16,24 @@ const styles = StyleSheet.create({
 
   child2: {
     flexDirection: "row",
-    paddingRight: 20,
   },
 
   child3: {
-    marginLeft: 30,
+    marginLeft: 20,
     flexShrink: 1,
-    //padding: 33,
   },
 
   child4: {
     justifyContent: "center",
     alignSelf: "flex-start",
-    padding: 10,
+    padding: 5,
     borderRadius: 4,
-    marginBottom: 33,
   },
 
   child5: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 30,
-    paddingRight: 45,
-    paddingLeft: 44,
+    justifyContent: "space-evenly",
+    marginTop: 20,
   },
 
   child6: {
@@ -64,21 +59,17 @@ const RepositoryItem = ({ repository }) => {
       <View style={styles.child1}>
         <View style={styles.child2}>
           <Image
-            source={repository.ownerAvatarUrl}
-            style={{ height: 80, width: 80, borderRadius: 5 }}
+            source={{ uri: repository.ownerAvatarUrl }}
+            style={{ height: 60, width: 60, borderRadius: 3 }}
           />
 
           <View style={styles.child3}>
-            <Text
-              fontSize="mainHeading"
-              fontWeight="bold"
-              marginBottom="bottom"
-            >
+            <Text fontSize="subheading" fontWeight="bold" marginBottom="bottom">
               {repository.fullName}
             </Text>
 
             <Text
-              fontSize="mainHeading"
+              fontSize="subheading"
               fontWeight="normal"
               color="textSecondary"
               marginBottom="bottom"
@@ -89,7 +80,7 @@ const RepositoryItem = ({ repository }) => {
             <Text
               color="headingColor"
               backgroundColor="primary"
-              fontSize="mainHeading"
+              fontSize="subheading"
               fontWeight="normal"
               style={styles.child4}
             >
@@ -100,15 +91,11 @@ const RepositoryItem = ({ repository }) => {
 
         <View style={styles.child5}>
           <View>
-            <Text
-              fontSize="mainHeading"
-              fontWeight="bold"
-              style={styles.child6}
-            >
+            <Text fontSize="subheading" fontWeight="bold" style={styles.child6}>
               {formatNum(repository.stargazersCount)}
             </Text>
             <Text
-              fontSize="mainHeading"
+              fontSize="subheading"
               fontWeight="normal"
               color="textSecondary"
               style={styles.child6}
@@ -118,15 +105,11 @@ const RepositoryItem = ({ repository }) => {
             </Text>
           </View>
           <View>
-            <Text
-              fontSize="mainHeading"
-              fontWeight="bold"
-              style={styles.child6}
-            >
+            <Text fontSize="subheading" fontWeight="bold" style={styles.child6}>
               {formatNum(repository.forksCount)}
             </Text>
             <Text
-              fontSize="mainHeading"
+              fontSize="subheading"
               fontWeight="normal"
               color="textSecondary"
               style={styles.child6}
@@ -135,16 +118,12 @@ const RepositoryItem = ({ repository }) => {
             </Text>
           </View>
           <View>
-            <Text
-              fontSize="mainHeading"
-              fontWeight="bold"
-              style={styles.child6}
-            >
+            <Text fontSize="subheading" fontWeight="bold" style={styles.child6}>
               {" "}
               {repository.reviewCount}{" "}
             </Text>
             <Text
-              fontSize="mainHeading"
+              fontSize="subheading"
               fontWeight="normal"
               color="textSecondary"
               style={styles.child6}
@@ -153,16 +132,12 @@ const RepositoryItem = ({ repository }) => {
             </Text>
           </View>
           <View>
-            <Text
-              fontSize="mainHeading"
-              fontWeight="bold"
-              style={styles.child6}
-            >
+            <Text fontSize="subheading" fontWeight="bold" style={styles.child6}>
               {" "}
               {repository.ratingAverage}
             </Text>
             <Text
-              fontSize="mainHeading"
+              fontSize="subheading"
               fontWeight="normal"
               color="textSecondary"
               style={styles.child6}
