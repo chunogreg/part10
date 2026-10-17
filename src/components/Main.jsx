@@ -6,6 +6,7 @@ import AppBar from "./AppBar";
 import theme from "../theme";
 import { Routes, Route, Navigate } from "react-router-native";
 import SignIn from "./SignIn";
+import Review from "./Review";
 
 const styles = StyleSheet.create({
   contaianer: {
@@ -20,18 +21,17 @@ const styles = StyleSheet.create({
 
 const Main = () => {
   return (
-    <>
-      <View style={styles.contaianer}>
-        <Pressable>
-          <AppBar />
-        </Pressable>
-        <Routes>
-          <Route path="/" element={<RepositoryList />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-          <Route path="/Sign In" element={<SignIn />} />
-        </Routes>
-      </View>
-    </>
+    <View style={styles.contaianer}>
+      <Pressable>
+        <AppBar />
+      </Pressable>
+      <Routes>
+        <Route path="/" element={<RepositoryList />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="/Sign In" element={<SignIn />} />
+        <Route path="/createReview" element={<Review />} />
+      </Routes>
+    </View>
   );
 };
 
