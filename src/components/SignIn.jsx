@@ -17,6 +17,7 @@ const initialValues = {
 const validationSchema = yup.object().shape({
   username: yup
     .string()
+
     // .min(2, "username must be more than 1 character")
 
     .required("username is required"),
@@ -26,11 +27,12 @@ const validationSchema = yup.object().shape({
     .required("password is required"),
 });
 
-const SignInForm = ({ onSubmit }) => {
+export const SignInForm = ({ onSubmit }) => {
   const formik = useFormik({
     initialValues,
     validationSchema,
     onSubmit,
+    // validateOnChange: false,
   });
 
   const styles = StyleSheet.create({
@@ -48,7 +50,7 @@ const SignInForm = ({ onSubmit }) => {
 
     textInputs: {
       borderWidth: 1,
-      marginBottom: 20,
+      marginVertical: 12,
       borderRadius: 5,
       textAlign: "left",
       alignItems: "flex-start",
@@ -62,6 +64,8 @@ const SignInForm = ({ onSubmit }) => {
       height: 50,
       borderRadius: 5,
       textAlign: "center",
+      marginVertical: 12,
+
       paddingVertical: 10,
     },
   });
@@ -71,7 +75,7 @@ const SignInForm = ({ onSubmit }) => {
       <TextInput
         placeholder="username"
         value={formik.values.username}
-        onChange={formik.handleChange("username")}
+        onChangeText={formik.handleChange("username")}
         style={styles.textInputs}
         onBlur={formik.handleBlur("username")}
       />
@@ -80,9 +84,9 @@ const SignInForm = ({ onSubmit }) => {
       )}
       <TextInput
         secureTextEntry={true}
-        placeholder="Password"
+        placeholder="password"
         value={formik.values.password}
-        onChange={formik.handleChange("password")}
+        onChangeText={formik.handleChange("password")}
         style={styles.textInputs}
         onBlur={formik.handleBlur("password")}
       />
@@ -104,11 +108,18 @@ const SignInForm = ({ onSubmit }) => {
   );
 };
 
+export const SignInContainer = ({ signIn, onSubmit }) => {
+  return <SignInForm onSubmit={onSubmit} />;
+};
+
 const SignIn = () => {
   const [signIn] = useSignIn();
   const navigate = useNavigate();
   const authStorage = useAuthStorage();
   const client = useApolloClient();
+
+  console.log("==SIGN IN==", signIn);
+  console.log("==SIGNIN DOT DATA==", signIn.data);
 
   const onSubmit = async (values) => {
     const { username, password } = values;
@@ -117,15 +128,15 @@ const SignIn = () => {
       await authStorage.setAccessToken(data.authenticate.accessToken);
 
       //  console.log("==ACCESS TOKEN== ", data.authenticate.accessToken);
-      const toks = await authStorage.getAccessToken();
-      //console.log("==STORED TOKEN==:::: ", toks);
+
       client.resetStore();
       navigate("/", { replace: true });
     } catch (e) {
       console.log("==ANY ERROR ?== ", e);
     }
   };
-  return <SignInForm onSubmit={onSubmit} />;
+
+  return <SignInContainer signIn={signIn} onSubmit={onSubmit} />;
 };
 
 export default SignIn;

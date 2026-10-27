@@ -3,7 +3,7 @@ import theme from "../theme";
 
 import Text from "../components/Text";
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   container: {
     display: "flex",
   },
@@ -42,6 +42,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     textAlign: "center",
   },
+  buttons: {
+    padding: 8,
+    borderRadius: 4,
+    textAlign: "center",
+    width: 120,
+    fontWeight: 550,
+  },
 
   text: { fontSize: 24, fontWeight: "700", marginBottom: 15 },
 });
@@ -63,7 +70,7 @@ const RepositoryItem = ({ repository }) => {
             style={{ height: 60, width: 60, borderRadius: 3 }}
           />
 
-          <View style={styles.child3}>
+          <View style={styles.child3} testID="repositoryItem">
             <Text fontSize="subheading" fontWeight="bold" marginBottom="bottom">
               {repository.fullName}
             </Text>
@@ -89,7 +96,7 @@ const RepositoryItem = ({ repository }) => {
           </View>
         </View>
 
-        <View style={styles.child5}>
+        <View style={styles.child5} testID="repositoryItem2">
           <View>
             <Text fontSize="subheading" fontWeight="bold" style={styles.child6}>
               {formatNum(repository.stargazersCount)}

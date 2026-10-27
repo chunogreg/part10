@@ -10,8 +10,8 @@ const Greeting = ({ name }) => {
 };
 
 describe("Greeting", () => {
-  it("renders a greeting message based on the name prop", () => {
-    render(<Greeting name="Kalle" />);
+  it("renders a greeting message based on the name prop", async () => {
+    await render(<Greeting name="Kalle" />);
 
     screen.debug();
 

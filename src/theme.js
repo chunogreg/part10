@@ -6,6 +6,7 @@ const theme = {
     primary: "#0366d6",
     headingColor: "white",
     mainBackground: "#e1e4e8",
+    red: "#cc462b",
   },
   fontSizes: {
     body: 14,
@@ -22,6 +23,7 @@ const theme = {
   },
   fontWeights: {
     normal: "400",
+    medium: "550",
     bold: "700",
   },
   margins: {

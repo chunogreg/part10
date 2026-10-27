@@ -26,11 +26,12 @@ const styles = StyleSheet.create({
 
     // ...
   },
-  // scrollable: {
-  //   paddingVertical: 15,
-  //   paddingHorizontal: 10,
-  //   // backgroundColor: "#343c3e",
-  // },
+  marginRight: { marginRight: 27 },
+  scrollable: {
+    paddingVertical: 15,
+    paddingHorizontal: 10,
+    // backgroundColor: "#343c3e",
+  },
   // ...
 });
 
@@ -47,49 +48,65 @@ const AppBar = () => {
   const logout = async () => {
     await authStorage.removeAccessToken();
     const toks = authStorage.getAccessToken();
-    console.log("==STORED TOKEN==:::: ", toks);
-    console.log("ME AFTER:", data);
+
+    // console.log("==STORED TOKEN==:::: ", toks);
+    // console.log("ME AFTER:", data);
 
     await apollo.resetStore();
     // navigate("/", { replace: true });
+  };
+
+  const textStyle = () => {
+    return {
+      fontSize: "subheading",
+      fontWeight: "bold",
+      color: "headingColor",
+    };
   };
 
   return (
     <View style={styles.container}>
       <ScrollView horizontal={true} contentContainerStyle={styles.scrollable}>
         <Link to="/">
-          <Text
-            fontSize="subheading"
-            fontWeight="bold"
-            color="headingColor"
-            style={{ marginRight: 27 }}
-          >
+          <Text {...textStyle()} style={styles.marginRight}>
             Repositories
           </Text>
         </Link>
-        <Link to="/review">
-          <Text
-            fontSize="subheading"
-            fontWeight="bold"
-            color="headingColor"
-            style={{ marginRight: 27 }}
-          >
-            Create a review
-          </Text>
-        </Link>
+        {data?.me?.username && (
+          <>
+            {" "}
+            <Link to="/createReview">
+              <Text {...textStyle()} style={styles.marginRight}>
+                Create a review
+              </Text>
+            </Link>
+            <Link to="/myReviews">
+              <Text {...textStyle()} style={styles.marginRight}>
+                My reviews
+              </Text>
+            </Link>
+          </>
+        )}
 
-        {data?.me ? (
+        {data?.me?.username ? (
           <Pressable onPress={logout}>
-            <Text fontSize="subheading" fontWeight="bold" color="headingColor">
+            <Text {...textStyle()} style={styles.marginRight}>
               Sign out
             </Text>
           </Pressable>
         ) : (
-          <Link to="/Sign In">
-            <Text fontSize="subheading" fontWeight="bold" color="headingColor">
-              Sign in
-            </Text>
-          </Link>
+          <>
+            <Link to="/Sign In">
+              <Text {...textStyle()} style={styles.marginRight}>
+                Sign in
+              </Text>
+            </Link>
+            <Link to="/signup">
+              <Text {...textStyle()} style={styles.marginRight}>
+                Sign up
+              </Text>
+            </Link>
+          </>
         )}
       </ScrollView>
     </View>

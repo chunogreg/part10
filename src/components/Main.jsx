@@ -7,6 +7,9 @@ import theme from "../theme";
 import { Routes, Route, Navigate } from "react-router-native";
 import SignIn from "./SignIn";
 import Review from "./Review";
+import SingleRepository from "./singleRepository";
+import SignUp from "./signUp";
+import MyReviews from "./myReviews";
 
 const styles = StyleSheet.create({
   contaianer: {
@@ -29,7 +32,11 @@ const Main = () => {
         <Route path="/" element={<RepositoryList />} />
         <Route path="*" element={<Navigate to="/" replace />} />
         <Route path="/Sign In" element={<SignIn />} />
-        <Route path="/createReview" element={<Review />} />
+        <Route path="/createReview" element={<Review />} />{" "}
+        <Route path="/:id" element={<SingleRepository />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="*" element={<RepositoryList />} />
+        <Route path="/myReviews" element={<MyReviews />} />
       </Routes>
     </View>
   );
